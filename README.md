@@ -1,15 +1,34 @@
-# ResponsiveShot
+<p align="center">
+  <img src="icons/icon128.png" width="96" height="96" alt="ResponsiveShot">
+</p>
 
-Capture full-page screenshots at any viewport width. Switch between device presets for quick responsive testing.
+<h1 align="center">ResponsiveShot</h1>
+
+<p align="center">
+  <strong>Full-page screenshots at every breakpoint. One click.</strong><br>
+  Stop resizing your browser window. Stop cropping in Photoshop.<br>
+  Just pick a width and get a pixel-perfect PNG.
+</p>
+
+<p align="center">
+  <a href="#install">Install</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#print-mode">Print Mode</a>
+</p>
+
+---
+
+## Why ResponsiveShot?
+
+Responsive testing shouldn't require a 12-step workflow. Open the popup, tap a preset, done. ResponsiveShot uses the Chrome DevTools Protocol under the hood to emulate any viewport width — yes, even narrower than Chrome's minimum window size. No window resizing, no workarounds, no extensions that screenshot the wrong thing.
 
 ## Features
 
-- **Full-page screenshots** — captures the entire page, not just the visible viewport
-- **Viewport presets** — mobile (360, 390, 428) and desktop (1024, 1280, 1536, 1920, 2560)
-- **Batch capture** — "All" button screenshots every preset in one click
-- **Print mode** — capture how the page looks when printed (Letter / A4)
-- **DevTools-based emulation** — accurate viewport widths, even below Chrome's minimum window size
-- **Smart height detection** — measures actual content height, ignoring `min-height: 100vh` inflation
+- **Full-page capture** — the entire page from top to bottom, not just what's visible
+- **8 viewport presets** — mobile (360, 390, 428) and desktop (1024, 1280, 1536, 1920, 2560)
+- **Batch mode** — hit "All" and get every breakpoint in one go
+- **Print preview** — see exactly what your page looks like on paper (Letter / A4)
+- **Accurate emulation** — real DevTools Protocol, not window hacks
+- **Smart height** — measures actual content, ignores `min-height: 100vh` padding
+- **Zero config** — no options page, no accounts, no cloud. Just screenshots.
 
 ## Install
 
@@ -20,39 +39,38 @@ Capture full-page screenshots at any viewport width. Switch between device prese
 3. Enable "Developer mode"
 4. Click "Load unpacked" and select the project folder
 
-### From Chrome Web Store
+### Chrome Web Store
 
 Coming soon.
 
 ## Usage
 
-1. Navigate to the page you want to screenshot
-2. Click the ResponsiveShot icon in the toolbar
-3. Click a width preset to capture a screenshot at that size
-4. Or click **Screenshot** for the current viewport width
-5. Or click **All** to capture every preset at once
+1. Navigate to any page
+2. Click the ResponsiveShot icon
+3. Pick a width — screenshot downloads instantly
+4. Or hit **All** for every preset at once
 
 Screenshots are saved as `screenshot-{width}-{timestamp}.png`.
 
 ### Print mode
 
-The **Print** presets (Letter / A4) emulate how the page looks when printed:
+The **Print** presets (Letter / A4) capture how the page looks when printed:
 
 - Activates [`@media print`](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Printing) stylesheets
-- Strips background colors, images, and shadows — matching the default browser behavior when "Background graphics" is off
-- Respects [`print-color-adjust: exact`](https://developer.mozilla.org/en-US/docs/Web/CSS/print-color-adjust) on elements that explicitly opt in to keeping their backgrounds
+- Strips backgrounds and shadows — just like a real printer with "Background graphics" off
+- Respects [`print-color-adjust: exact`](https://developer.mozilla.org/en-US/docs/Web/CSS/print-color-adjust) on elements that explicitly keep their backgrounds
 
-This is useful for checking that your `@media print` styles work correctly and that content remains readable without decorative backgrounds. Print screenshots are saved as `print-{format}-{timestamp}.png` (e.g. `print-a4-1740000000.png`).
+Perfect for verifying your print styles before shipping. Saved as `print-{format}-{timestamp}.png`.
 
 ## Permissions
 
-| Permission | Reason |
+| Permission | Why |
 |---|---|
-| `activeTab` | Access the current tab for screenshotting |
-| `downloads` | Save screenshot PNGs to disk |
-| `scripting` | Read current viewport width |
-| `debugger` | DevTools Protocol for viewport emulation and full-page capture |
+| `activeTab` | Access the current tab |
+| `downloads` | Save PNGs to disk |
+| `scripting` | Read viewport width |
+| `debugger` | DevTools Protocol for emulation + capture |
 
 ## License
 
-Copyright (c) 2026 Sebastian Software GmbH — [sebastian-software.com](https://www.sebastian-software.com)
+Copyright (c) 2026 [Sebastian Software GmbH](https://www.sebastian-software.com)
