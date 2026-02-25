@@ -6,6 +6,12 @@ const PRESETS = {
   desktop: [1024, 1280, 1536, 1920, 2560],
 };
 
+// A4: 210mm, Letter: 215.9mm at 96dpi
+const PRINT_PRESETS = [
+  { label: "Letter", width: 816 },
+  { label: "A4", width: 794 },
+];
+
 const ALL_WIDTHS = [...PRESETS.mobile, ...PRESETS.desktop];
 
 const currentSizeEl = document.getElementById("current-size");
@@ -28,8 +34,25 @@ function buildPresets(widths, containerId) {
   });
 }
 
+function buildPrintPresets(presets, containerId) {
+  const container = document.getElementById(containerId);
+  presets.forEach((preset) => {
+    const btn = document.createElement("button");
+    btn.className = "preset-btn";
+    btn.textContent = preset.label;
+    btn.addEventListener("click", () => sendMessage({
+      action: "captureScreenshot",
+      targetWidth: preset.width,
+      print: true,
+      printLabel: preset.label.toLowerCase(),
+    }));
+    container.appendChild(btn);
+  });
+}
+
 buildPresets(PRESETS.mobile, "presets-mobile");
 buildPresets(PRESETS.desktop, "presets-desktop");
+buildPrintPresets(PRINT_PRESETS, "presets-print");
 
 function getActiveTab() {
   return chrome.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {

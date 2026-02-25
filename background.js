@@ -3,7 +3,10 @@
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "captureScreenshot") {
-    captureAtWidths(message.tabId, [message.targetWidth])
+    captureAtWidths(message.tabId, [message.targetWidth], {
+      print: message.print,
+      printLabel: message.printLabel,
+    })
       .then((result) => sendResponse(result))
       .catch((err) => sendResponse({ error: err.message }));
     return true;
@@ -17,12 +20,42 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-async function captureAtWidths(tabId, widths) {
+async function captureAtWidths(tabId, widths, { print = false, printLabel } = {}) {
   const debuggee = { tabId };
 
   await chrome.debugger.attach(debuggee, "1.3");
 
   try {
+    // Emulate print media if requested
+    if (print) {
+      await chrome.debugger.sendCommand(
+        debuggee,
+        "Emulation.setEmulatedMedia",
+        { media: "print" }
+      );
+
+      // Strip backgrounds unless the element opts in via print-color-adjust: exact
+      // This matches default browser print behavior ("Background graphics" off)
+      await chrome.debugger.sendCommand(debuggee, "Runtime.evaluate", {
+        expression: `(() => {
+          // First, mark elements that opt in to keeping backgrounds
+          for (const el of document.querySelectorAll('*')) {
+            const pca = getComputedStyle(el).printColorAdjust
+              || getComputedStyle(el).webkitPrintColorAdjust;
+            if (pca === 'exact') {
+              el.dataset.__rsPrintExact = '';
+            }
+          }
+
+          // Then apply the override, excluding marked elements
+          const s = document.createElement('style');
+          s.id = '__responsive-shot-print';
+          s.textContent = '*:not([data-__rs-print-exact]), *::before, *::after { background: transparent !important; background-image: none !important; box-shadow: none !important; text-shadow: none !important; }';
+          document.head.appendChild(s);
+        })()`,
+      });
+    }
+
     for (const width of widths) {
       // Emulate target width with a normal viewport height
       // Using a standard height keeps vh-based layouts (like min-height: 100vh) intact
@@ -33,7 +66,7 @@ async function captureAtWidths(tabId, widths) {
           width,
           height: width < 768 ? 800 : 900,
           deviceScaleFactor: 1,
-          mobile: width < 768,
+          mobile: false,
         }
       );
 
@@ -75,19 +108,35 @@ async function captureAtWidths(tabId, widths) {
 
       const dataUrl = "data:image/png;base64," + screenshot.data;
       const timestamp = Date.now();
+      const name = print && printLabel ? `print-${printLabel}` : `screenshot-${width}`;
 
       await chrome.downloads.download({
         url: dataUrl,
-        filename: `screenshot-${width}-${timestamp}.png`,
+        filename: `${name}-${timestamp}.png`,
         saveAs: false,
       });
     }
 
-    // Reset
+    // Reset emulation
     await chrome.debugger.sendCommand(
       debuggee,
       "Emulation.clearDeviceMetricsOverride"
     );
+    if (print) {
+      await chrome.debugger.sendCommand(debuggee, "Runtime.evaluate", {
+        expression: `(() => {
+          document.getElementById('__responsive-shot-print')?.remove();
+          for (const el of document.querySelectorAll('[data-__rs-print-exact]')) {
+            delete el.dataset.__rsPrintExact;
+          }
+        })()`,
+      });
+      await chrome.debugger.sendCommand(
+        debuggee,
+        "Emulation.setEmulatedMedia",
+        { media: "" }
+      );
+    }
 
     return { success: true };
   } finally {

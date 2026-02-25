@@ -7,6 +7,7 @@ Capture full-page screenshots at any viewport width. Switch between device prese
 - **Full-page screenshots** — captures the entire page, not just the visible viewport
 - **Viewport presets** — mobile (360, 390, 428) and desktop (1024, 1280, 1536, 1920, 2560)
 - **Batch capture** — "All" button screenshots every preset in one click
+- **Print mode** — capture how the page looks when printed (Letter / A4)
 - **DevTools-based emulation** — accurate viewport widths, even below Chrome's minimum window size
 - **Smart height detection** — measures actual content height, ignoring `min-height: 100vh` inflation
 
@@ -32,6 +33,16 @@ Coming soon.
 5. Or click **All** to capture every preset at once
 
 Screenshots are saved as `screenshot-{width}-{timestamp}.png`.
+
+### Print mode
+
+The **Print** presets (Letter / A4) emulate how the page looks when printed:
+
+- Activates [`@media print`](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Printing) stylesheets
+- Strips background colors, images, and shadows — matching the default browser behavior when "Background graphics" is off
+- Respects [`print-color-adjust: exact`](https://developer.mozilla.org/en-US/docs/Web/CSS/print-color-adjust) on elements that explicitly opt in to keeping their backgrounds
+
+This is useful for checking that your `@media print` styles work correctly and that content remains readable without decorative backgrounds. Print screenshots are saved as `print-{format}-{timestamp}.png` (e.g. `print-a4-1740000000.png`).
 
 ## Permissions
 
