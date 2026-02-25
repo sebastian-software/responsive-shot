@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="#install">Install</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#print-mode">Print Mode</a>
+  <a href="#install">Install</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#print-mode">Print Mode</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#why-these-presets">Why These Presets?</a>
 </p>
 
 ---
@@ -61,6 +61,24 @@ The **Print** presets (Letter / A4) capture how the page looks when printed:
 - Respects [`print-color-adjust: exact`](https://developer.mozilla.org/en-US/docs/Web/CSS/print-color-adjust) on elements that explicitly keep their backgrounds
 
 Perfect for verifying your print styles before shipping. Saved as `print-{format}-{timestamp}.png`.
+
+## Why these presets?
+
+Most screenshot tools dump a blank width input on you and call it flexibility. We think that's a trap. More options don't lead to better testing — they lead to inconsistent breakpoints across your team, arbitrary widths no real user has, and time wasted deciding instead of shipping.
+
+ResponsiveShot ships with **8 widths that cover the real world.**
+
+### Mobile: 360 · 390 · 428
+
+These three widths cover the vast majority of smartphones in use today. 360px captures older Android devices and the base-size Galaxy line. 390px is the iPhone 14/15/16 standard viewport. 428px covers the "Max" and "Plus" models. Together they account for [over 80% of mobile viewport widths](https://gs.statcounter.com/screen-resolution-stats/mobile/worldwide) in the wild.
+
+### Desktop: 1024 · 1280 · 1536 · 1920 · 2560
+
+These aren't random — they match the default breakpoints of [Tailwind CSS](https://tailwindcss.com/docs/responsive-design) (`lg`, `xl`, `2xl`) plus the two most common physical screen widths ([1920px at 19%](https://gs.statcounter.com/screen-resolution-stats/desktop/worldwide) and 2560px for high-end displays). If your CSS framework already uses these breakpoints, your screenshots will show exactly what each breakpoint triggers.
+
+### Why not customizable?
+
+Because the best defaults are the ones you never have to think about. Every team that "customizes" their breakpoints ends up with the same list plus one or two outliers nobody tests. We'd rather give you the right 8 and let you take all of them in one click.
 
 ## Permissions
 
