@@ -34,6 +34,12 @@ Responsive testing shouldn't require a 12-step workflow. Open the popup, tap a p
 - **Smart height** — measures actual content, ignores `min-height: 100vh` padding
 - **Zero config** — no options page, no accounts, no cloud. Just screenshots.
 
+## Browser support
+
+Chrome and Chromium-based browsers (Edge, Brave, Arc, Opera, Vivaldi). Requires Chrome 116+.
+
+Safari and Firefox are not supported — the extension relies on Chrome's DevTools Protocol for viewport emulation and full-page capture, which has no equivalent in other engines.
+
 ## Install
 
 ### From source
