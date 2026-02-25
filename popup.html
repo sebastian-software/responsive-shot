@@ -6,7 +6,10 @@
 </head>
 <body>
   <div class="container">
-    <button id="screenshot" class="screenshot-btn">Screenshot</button>
+    <div class="actions">
+      <button id="screenshot" class="btn btn-primary">Screenshot</button>
+      <button id="screenshot-all" class="btn btn-secondary">All</button>
+    </div>
 
     <div class="current-size">
       <span id="current-size"></span>
@@ -14,8 +17,11 @@
 
     <div class="divider"></div>
 
-    <h2>Viewport Presets</h2>
-    <div id="presets" class="presets"></div>
+    <h2>Mobile</h2>
+    <div id="presets-mobile" class="presets"></div>
+
+    <h2>Desktop</h2>
+    <div id="presets-desktop" class="presets"></div>
   </div>
 
   <script src="popup.js"></script>
