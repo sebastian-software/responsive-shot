@@ -14,6 +14,10 @@
   <a href="#install">Install</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#print-mode">Print Mode</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#why-these-presets">Why These Presets?</a>
 </p>
 
+<p align="center">
+  <img src="screenshot.png" width="280" alt="ResponsiveShot popup">
+</p>
+
 ---
 
 ## Why ResponsiveShot?
