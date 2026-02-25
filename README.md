@@ -89,6 +89,10 @@ Because the best defaults are the ones you never have to think about. Every team
 | `scripting` | Read viewport width |
 | `debugger` | DevTools Protocol for emulation + capture |
 
+## Credits
+
+Icon by [Streamline](https://www.streamlinehq.com)
+
 ## License
 
 [MIT License](LICENSE) — Copyright (c) 2026 [Sebastian Software GmbH](https://www.sebastian-software.com)
