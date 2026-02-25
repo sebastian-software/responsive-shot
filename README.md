@@ -91,4 +91,4 @@ Because the best defaults are the ones you never have to think about. Every team
 
 ## License
 
-Copyright (c) 2026 [Sebastian Software GmbH](https://www.sebastian-software.com)
+[MIT License](LICENSE) — Copyright (c) 2026 [Sebastian Software GmbH](https://www.sebastian-software.com)
