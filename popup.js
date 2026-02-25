@@ -1,5 +1,5 @@
 // Copyright (c) 2026 Sebastian Software GmbH
-// https://www.sebastian-software.de
+// https://www.sebastian-software.com
 
 const PRESETS = {
   mobile: [360, 390, 428],
@@ -33,12 +33,7 @@ buildPresets(PRESETS.desktop, "presets-desktop");
 
 function getActiveTab() {
   return chrome.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
-    if (!tab) return null;
-    // tabs permission lets us read tab.url
-    if (tab.url && (tab.url.startsWith("chrome://") || tab.url.startsWith("chrome-extension://"))) {
-      return null;
-    }
-    return tab;
+    return tab || null;
   });
 }
 
@@ -49,12 +44,9 @@ function sendMessage(msg) {
   });
 }
 
-// Init
+// Init — try to get viewport width, silently fail on protected pages
 getActiveTab().then((tab) => {
-  if (!tab) {
-    currentSizeEl.textContent = "–";
-    return;
-  }
+  if (!tab) return;
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
@@ -71,7 +63,7 @@ getActiveTab().then((tab) => {
       targetWidth: vw,
     }));
   }).catch(() => {
-    currentSizeEl.textContent = "–";
+    // Protected page (chrome://, etc.) — buttons still work, just no size display
   });
 });
 

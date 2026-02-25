@@ -1,5 +1,5 @@
 // Copyright (c) 2026 Sebastian Software GmbH
-// https://www.sebastian-software.de
+// https://www.sebastian-software.com
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "captureScreenshot") {

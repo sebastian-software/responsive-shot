@@ -5,8 +5,8 @@
   "version_name": "1.0.0",
   "description": "Capture full-page screenshots at any viewport size. Switch between device presets for quick responsive testing.",
   "author": "Sebastian Software GmbH",
-  "homepage_url": "https://www.sebastian-software.de",
-  "permissions": ["activeTab", "tabs", "downloads", "scripting", "debugger"],
+  "homepage_url": "https://www.sebastian-software.com",
+  "permissions": ["activeTab", "downloads", "scripting", "debugger"],
   "minimum_chrome_version": "116",
   "action": {
     "default_popup": "popup.html",
