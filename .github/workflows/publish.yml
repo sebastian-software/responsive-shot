@@ -1,0 +1,27 @@
+# Copyright (c) 2026 Sebastian Software GmbH
+# https://www.sebastian-software.de
+
+name: Publish to Chrome Web Store
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create ZIP
+        run: zip -r chrome-shot.zip . -x ".git/*" ".github/*" ".*"
+
+      - name: Upload & Publish
+        uses: mnao305/chrome-extension-upload@v5.0.0
+        with:
+          file-path: chrome-shot.zip
+          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
+          client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
+          client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          publish: true
