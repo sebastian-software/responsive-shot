@@ -11,6 +11,10 @@
 </p>
 
 <p align="center">
+  <a href="https://oss.sebastian-software.com"><img src="https://img.shields.io/badge/Powered%20by-Sebastian%20Software-00718d?style=flat-square" alt="Powered by Sebastian Software"></a>
+</p>
+
+<p align="center">
   <a href="#install">Install</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#print-mode">Print Mode</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#why-these-presets">Why These Presets?</a>
 </p>
 
@@ -105,4 +109,19 @@ Icon by [Streamline](https://www.streamlinehq.com)
 
 ## License
 
-[MIT License](LICENSE) — Copyright (c) 2026 [Sebastian Software GmbH](https://www.sebastian-software.com)
+[MIT License](LICENSE)
+
+---
+
+<!-- sebastian-software-branding:start -->
+<p align="center">
+  <a href="https://oss.sebastian-software.com">
+    <img src="https://sebastian-brand.vercel.app/sebastian-software/logo-software.svg" alt="Sebastian Software" width="240" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://oss.sebastian-software.com">Open Source at Sebastian Software</a><br />
+  Copyright &copy; 2026 Sebastian Software GmbH
+</p>
+<!-- sebastian-software-branding:end -->
