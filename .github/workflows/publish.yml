@@ -11,13 +11,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Create ZIP
         run: zip -r responsive-shot.zip . -x ".git/*" ".github/*" ".*"
 
       - name: Upload & Publish
-        uses: mnao305/chrome-extension-upload@v5.0.0
+        uses: mnao305/chrome-extension-upload@v6.0.0
         with:
           file-path: responsive-shot.zip
           extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
